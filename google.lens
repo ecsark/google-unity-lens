@@ -1,0 +1,11 @@
+[Lens]
+DBusName=unity.singlet.lens.google
+DBusPath=/unity/singlet/lens/google
+Name=Google
+Icon=/usr/share/unity/lenses/google/unity-lens-google.svg
+Description=Google Lens
+SearchHint=Search Google
+Shortcut=q
+
+[Desktop Entry]
+X-Ubuntu-Gettext-Domain=google
