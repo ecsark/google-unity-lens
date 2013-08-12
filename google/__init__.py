@@ -23,18 +23,29 @@ class GoogleLens(SingleScopeLens):
     browse_category = ListViewCategory("Find More", 'zoom-original-symbolic')
     gsearch = GoogleSearch()
 
+
+    """
+    updated: press space to search
+    """
     def search(self, search, results):
-        if(len(results)<2):
-            pass
-        answers = self.gsearch.google(search)
-        for ans in answers:
-            results.append(ans['url'],
-                            'zoom-in',
-                            self.results_category,
-                            "text/html",
-                            ans['title'][:45],
-                            ans['synop'],
-                            ans['url'])
+
+        if len(search.strip())>=1 and search[-1]==" ":
+            answers = self.gsearch.google(search)
+            for ans in answers:
+                titleRaw = ans['title'][:45]
+                title = ""
+                if "-" in titleRaw:
+                    title = "-".join(titleRaw.split("-")[:2])
+                else:
+                    title = titleRaw
+                results.append(ans['url'],
+                                'zoom-in',
+                                self.results_category,
+                                "text/html",
+                                title,
+                                ans['synop'],
+                                ans['url'])
+
         results.append(self.gsearch.getURL(search),
                             'zoom-original',
                             self.browse_category,
@@ -43,4 +54,3 @@ class GoogleLens(SingleScopeLens):
                             "open browser",
                             self.gsearch.getURL(search)
             )
-        pass
