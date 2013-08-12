@@ -80,23 +80,23 @@ class GoogleSearch():
 			results.append(part)
 
 		return results
-            
-    # get the url of next page from the parsed_html
-    def __nextPageUrl__(self, parsed_html):
-        """
-        I haven't test this function, because I don't have supersoup in my Computer
-        I just write the following code according to my understanding of the previous
-        code 
-        """
-        url_next = ""
-        
-        #find the url of next page in the parsed html
-        navigation_table = parsed_html.findALL('table', attrs = {'id':'nav'})
-        next_page_entries = navigation_table.findALL('td',attrs ={})
-        url_next = (next_page_entries[0].contents.a)['href']
-            
-        #return the url of next page
-        return url_next
+		
+	
+	# get the url of next page from the parsed_html
+	def __nextPageURL__(self, htmlString):
+		"""
+		I haven't test this function, because I don't have supersoup in my Computer
+		I just write the following code according to my understanding of the previous
+		code 
+		"""
+		
+		url_next = ""
+		raw = BeautifulSoup(htmlString)
+		#find the url of next page in the parsed html
+		navigation_table = raw.find('table', attrs = {'id':'nav'})
+		next_page_entries = navigation_table.findAll('td')
+		url_next = (next_page_entries[-1].contents[0])['href'] #get the last url in the nav_table
+		return self.site+url_next
 
 def main(argv):
 	
