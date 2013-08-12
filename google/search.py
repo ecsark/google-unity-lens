@@ -63,7 +63,7 @@ class GoogleSearch():
 			titleRaw = rc.find(attrs={'class':'r'}).a #title
 			title = ""
 			for t in titleRaw.contents:
-				while type(t)==Tag: #<em></em> case
+				if type(t)==Tag: #<em></em> case
 					t = t.contents[0]
 				title += t
 
@@ -71,7 +71,7 @@ class GoogleSearch():
 			synopsis = ""
 			if synopRaw!=None:				
 				for s in synopRaw.contents:
-					while type(s)==Tag: #<em></em> case
+					if type(s)==Tag: #<em></em> case
 						s = s.contents[0]
 					synopsis += s
 			part['title'] = self.__cleanString__(title)
