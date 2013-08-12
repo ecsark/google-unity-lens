@@ -80,7 +80,17 @@ class GoogleSearch():
 			results.append(part)
 
 		return results
-
+            
+    # get the url of next page from the current html string
+    def __nextPageUrl__(self, htmlString):
+        url_next = ""
+        
+        #1. use beautifulSoup to clean the html
+        
+        #2. find the url of next page in the
+        
+        #3. return the url of next page
+        return url_next
 
 def main(argv):
 	
